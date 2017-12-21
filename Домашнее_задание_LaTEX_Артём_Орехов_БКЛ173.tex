@@ -1,0 +1,179 @@
+\documentclass[a4paper,8pt,leqno]{article}
+\usepackage{cmap}					% поиск в PDF
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % Умная запятая
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{graphics} % Вставка рисунков
+\setlength\fboxsep{3pt} % Отступ рамки от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстов
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{longtable}
+\usepackage{setspace}
+\usepackage{lastpage}
+\usepackage{soul}
+\usepackage{hyperref}
+%\usepackage{cite} % Работа с библиографией
+\usepackage{csquotes} % Ещё инструменты для ссылок
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{
+unicode = true, % Разрешён формат Unicode
+pdftitle = {Заголовок}, % Заголовок
+pdfauthor = {Автор}, % Автор
+pdfsubject = {Тема}, % Тема
+pdfcreator = {Создатель}, % Создатель
+pdfproducer= {Производитель}, % Производитель
+pdfkeywords = {keyword1}{key2}{key3}, % Ключевые слова
+colorlinks = true, % false - Ссылки в рамках; true - цветные ссылки
+linkcolor = blue, % Внутренние ссылки
+citecolor = purple, % На библиографию
+filecolor = magenta, % На файлы
+urlcolor = blue
+} % На URL
+\renewcommand{\familydefault}{\sfdefault}% Начертание шрифта
+\usepackage{multicol}
+\onehalfspacing % 1.5
+%\usepackage{doublespacing} 2
+%\usepackage{singlespacing} 1
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=35mm}
+\geometry{right=20mm}
+
+\usepackage[backend=biber,bibencoding=utf8,sorting=nyt,maxcitenames=2,style=authoryear]{biblatex}
+%\addbibresource{bib1.bib}
+%\addbibresource{My_Collection.bib}
+\usepackage{fancyhdr} % Колонтитулы
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0ex}
+%\lfoot{Нижний левый}
+%\rfoot{Нижний правый}
+%\rhead{Верхний правый}
+%\chead{Верхний в центре}
+%\lhead{Верхний левый}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+
+\theoremstyle{definition} % определение
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % примечание
+\newtheorem*{nonum}{Решение}
+
+\usepackage{etoolbox} % логические операторы
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgf,tikz}\usepackage{mathrsfs}\usetikzlibrary{arrows}
+
+%\pgfplotsset{compat=1.14}
+%\usepackage{fontspec}
+%\defaultfontfeatures{Ligatures=TeX, Renderer = Basic}
+%\setmainfont [Ligatures = {TeX,Historic}]{Times New Roman}
+%\setsansfont {Comic Sans MS}
+%\setmonofont {Courier New}
+
+\usepackage{indentfirst}
+\frenchspacing
+
+\mathtoolsset {showonlyrefs = false}
+
+\author{Артём Орехов}
+\title{Площадь фигуры}
+\date{20.12.2017}
+\begin{document}
+	\maketitle
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%BB\%D0\%BE\%D1\%89\%D0\%B0\%D0\%B4\%D1\%8C}{\textbf{Площадь}} \textbf{плоской фигуры} — \href{https://ru.wikipedia.org/wiki/\%D0\%90\%D0\%B4\%D0\%B4\%D0\%B8\%D1\%82\%D0\%B8\%D0\%B2\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C}{аддитивная} числовая характеристика \href{https://ru.wikipedia.org/wiki/\%D0\%A4\%D0\%B8\%D0\%B3\%D1\%83\%D1\%80\%D0\%B0\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{фигуры}, целиком принадлежащей одной \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%BB\%D0\%BE\%D1\%81\%D0\%BA\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{плоскости}. В простейшем случае, когда фигуру можно разбить на конечное множество \href{https://ru.wikipedia.org/wiki/\%D0\%95\%D0\%B4\%D0\%B8\%D0\%BD\%D0\%B8\%D1\%87\%D0\%BD\%D1\%8B\%D0\%B9\_\%D0\%BA\%D0\%B2\%D0\%B0\%D0\%B4\%D1\%80\%D0\%B0\%D1\%82}{единичных квадратов}, площадь равна числу квадратов.
+	\tableofcontents
+	\section{Об опеределении}
+	Формальное введение понятия площадь и объём можно найти в статье \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%B5\%D1\%80\%D0\%B0\_\%D0\%96\%D0\%BE\%D1\%80\%D0\%B4\%D0\%B0\%D0\%BD\%D0\%B0}{мера Жордана}, здесь мы приводим лишь намётки определения с комментариями.
+	\textbf{Площадь} — это \href{https://ru.wikipedia.org/wiki/\%D0\%92\%D0\%B5\%D1\%89\%D0\%B5\%D1\%81\%D1\%82\%D0\%B2\%D0\%B5\%D0\%BD\%D0\%BD\%D0\%BE\%D0\%B5\_\%D1\%87\%D0\%B8\%D1\%81\%D0\%BB\%D0\%BE}{вещественнозначная функция}, определённая на \textit{определённом классе фигур} \href{https://ru.wikipedia.org/wiki/\%D0\%95\%D0\%B2\%D0\%BA\%D0\%BB\%D0\%B8\%D0\%B4\%D0\%BE\%D0\%B2\%D0\%BE\_\%D0\%BF\%D1\%80\%D0\%BE\%D1\%81\%D1\%82\%D1\%80\%D0\%B0\%D0\%BD\%D1\%81\%D1\%82\%D0\%B2\%D0\%BE}{евклидовой плоскости} и удовлетворяющая четырём условиям:
+	\begin{enumerate}
+	\item Положительность — площадь неотрицательна;
+	\item Нормировка — \href{https://ru.wikipedia.org/wiki/\%D0\%9A\%D0\%B2\%D0\%B0\%D0\%B4\%D1\%80\%D0\%B0\%D1\%82}{квадрат} со стороной единица имеет площадь 1;
+	\item \href{https://ru.wikipedia.org/wiki/\%D0\%9A\%D0\%BE\%D0\%BD\%D0\%B3\%D1\%80\%D1\%83\%D1\%8D\%D0\%BD\%D1\%82\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{Конгруэнтность} — конгруэнтные фигуры имеют равную площадь;
+	\item \href{https://ru.wikipedia.org/wiki/\%D0\%90\%D0\%B4\%D0\%B4\%D0\%B8\%D1\%82\%D0\%B8\%D0\%B2\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C}{Аддитивность} — площадь объединения двух фигур без общих внутренних точек равна сумме площадей.
+	\end{enumerate}
+При этом \textbf{определённый класс} должен быть замкнут относительно пересечения и объединения, а также относительно движений плоскости и включать в себя все \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%BD\%D0\%BE\%D0\%B3\%D0\%BE\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{многоугольники}. Из этих аксиом следует \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%BE\%D0\%BD\%D0\%BE\%D1\%82\%D0\%BE\%D0\%BD\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C\_\%D1\%84\%D1\%83\%D0\%BD\%D0\%BA\%D1\%86\%D0\%B8\%D0\%B8}{монотонность} площади, то есть
+\begin{itemize}
+\item Если одна фигура принадлежит другой фигуре, то площадь первой не превосходит площади второй:
+\end{itemize}
+Чаще всего за «определённый класс» берут множество \textit{квадрируемых фигур}. Фигура \textbf{F} называется \textbf{квадрируемой}, если для любого $\varepsilon$ >0 существует пара многоугольников \textbf{P} и \textbf{Q}, такие что \textbf{P} $\subset$ \textbf{F} $\subset$ \textbf{Q} и \textbf{S(Q)} - \textbf{S(P)} <$\varepsilon$, где \textbf{S(P)} обозначает площадь \textbf{P}.
+\textbf{Примеры квадрируемых фигур}
+\begin{itemize}
+\item многоугольники;
+\item любая фигура, ограниченная \href{https://ru.wikipedia.org/wiki/\%D0\%A1\%D0\%BF\%D1\%80\%D1\%8F\%D0\%BC\%D0\%BB\%D1\%8F\%D0\%B5\%D0\%BC\%D0\%B0\%D1\%8F\_\%D0\%BA\%D1\%80\%D0\%B8\%D0\%B2\%D0\%B0\%D1\%8F}{спрямляемой кривой}, в частности круг;
+\item фигура ограниченная \href{https://ru.wikipedia.org/wiki/\%D0\%A1\%D0\%BD\%D0\%B5\%D0\%B6\%D0\%B8\%D0\%BD\%D0\%BA\%D0\%B0\_\%D0\%9A\%D0\%BE\%D1\%85\%D0\%B0}{снежинкой Коха}, хотя её граница не спрямляема.
+\end{itemize}
+\section{Связанные определения}
+\begin{itemize}
+\item Две фигуры называются равновеликими, если они имеют равную площадь.
+\end{itemize}
+\section{Комментарии}
+\begin{itemize}
+\item Существует математически строгий, но неоднозначный способ определить площадь для всех ограниченных подмножеств плоскости. То есть на множестве всех ограниченных подмножеств плоскости существуют различные функции площади, удовлетворяющие вышеприведённым аксиомам, а множество квадрируемых фигур является максимальным множеством фигур, на которых площадь определяется однозначно.
+\item \begin{itemize}
+	То же самое можно сделать для длины на прямой, но нельзя для \href{https://ru.wikipedia.org/wiki/\%D0\%9E\%D0\%B1\%D1\%8A\%D1\%91\%D0\%BC\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{объёма} в \href{https://ru.wikipedia.org/wiki/\%D0\%95\%D0\%B2\%D0\%BA\%D0\%BB\%D0\%B8\%D0\%B4\%D0\%BE\%D0\%B2\%D0\%BE\_\%D0\%BF\%D1\%80\%D0\%BE\%D1\%81\%D1\%82\%D1\%80\%D0\%B0\%D0\%BD\%D1\%81\%D1\%82\%D0\%B2\%D0\%BE}{евклидовом пространстве} и также нельзя для площади на единичной \href{https://ru.wikipedia.org/wiki/\%D0\%A1\%D1\%84\%D0\%B5\%D1\%80\%D0\%B0\_(\%D0\%BF\%D0\%BE\%D0\%B2\%D0\%B5\%D1\%80\%D1\%85\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C)}{сфере} в евклидовом пространстве, (смотри соответственно \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%B0\%D1\%80\%D0\%B0\%D0\%B4\%D0\%BE\%D0\%BA\%D1\%81\_\%D1\%83\%D0\%B4\%D0\%B2\%D0\%BE\%D0\%B5\%D0\%BD\%D0\%B8\%D1\%8F\_\%D1\%88\%D0\%B0\%D1\%80\%D0\%B0}{парадокс удвоения шара} и \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%B0\%D1\%80\%D0\%B0\%D0\%B4\%D0\%BE\%D0\%BA\%D1\%81\_\%D0\%A5\%D0\%B0\%D1\%83\%D1\%81\%D0\%B4\%D0\%BE\%D1\%80\%D1\%84\%D0\%B0}{парадокс Хаусдорфа}).
+\end{itemize}
+\end{itemize}
+\section{Формулы}
+\includegraphics [scale=1] {300px-Area.png}
+\begin{table}[]
+	\centering
+	\label{my-label}
+	\begin{tabular}{|p{4cm}|p{7cm}|p{4cm}|}
+		\hline
+		Фигура & Формула & Комментарий \\ \hline
+		\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D0\%B0\%D0\%B2\%D0\%B8\%D0\%BB\%D1\%8C\%D0\%BD\%D1\%8B\%D0\%B9\_\%D1\%82\%D1\%80\%D0\%B5\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Правильный треугольник} & $\frac{\sqrt{3}}{4} * a^2 $  & \textbf{a} - длина стороны треугольника           \\ \hline
+		\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B5\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Треугольник}     & $\sqrt{p * (p - a) * (p - b) * (p - c)}$ & \href{https://ru.wikipedia.org/wiki/\%D0\%A4\%D0\%BE\%D1\%80\%D0\%BC\%D1\%83\%D0\%BB\%D0\%B0\_\%D0\%93\%D0\%B5\%D1\%80\%D0\%BE\%D0\%BD\%D0\%B0}{Формула Герона}. \textbf{p} — \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%BE\%D0\%BB\%D1\%83\%D0\%BF\%D0\%B5\%D1\%80\%D0\%B8\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80}{полупериметр}, \textbf{a}, \textbf{b} и \textbf{c} — длины сторон треугольника.           \\ \hline
+		\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B5\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Треугольник}& $\frac{1}{2}$ * a * b * sin $\gamma$       & \textbf{a} и \textbf{b} — две стороны треугольника, а $\gamma$ — угол между ними.            \\ \hline
+		\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B5\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Треугольник}& $\frac{1}{2}$ * b * h        & \textbf{b} и \textbf{h} — сторона треугольника и \href{https://ru.wikipedia.org/wiki/\%D0\%92\%D1\%8B\%D1\%81\%D0\%BE\%D1\%82\%D0\%B0\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{высота}, проведённая к этой стороне.            \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9A\%D0\%B2\%D0\%B0\%D0\%B4\%D1\%80\%D0\%B0\%D1\%82}{Квадрат}	& $\textbf{a}^2$ & \textbf{a} — длина стороны квадрата.            \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D1\%8F\%D0\%BC\%D0\%BE\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Прямоугольник} & \textbf{a} * \textbf{b} & \textbf{a} и \textbf{b}— длины сторон прямоугольника.\\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%A0\%D0\%BE\%D0\%BC\%D0\%B1}{Ромб}	& $\textbf{a}^2$ * sin $\alpha$, $\frac{1}{2}$ \textbf{bc} & \textbf{a} — сторона ромба, $\alpha$  — внутренний угол, \textbf{b},\textbf{c} — диагонали.            \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%B0\%D1\%80\%D0\%B0\%D0\%BB\%D0\%BB\%D0\%B5\%D0\%BB\%D0\%BE\%D0\%B3\%D1\%80\%D0\%B0\%D0\%BC\%D0\%BC}{Параллелограмм}	& \textbf{b} * \textbf{h} & \textbf{b} — длина одной из сторон параллелограмма, а \textbf{h} — \href{https://ru.wikipedia.org/wiki/\%D0\%92\%D1\%8B\%D1\%81\%D0\%BE\%D1\%82\%D0\%B0\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{высота}, проведённая к этой стороне.      \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B0\%D0\%BF\%D0\%B5\%D1\%86\%D0\%B8\%D1\%8F}{Трапеция}	& $\frac{1}{2}$ * (\textbf{a} + \textbf{b}) * \textbf{h}         & \textbf{a} и \textbf{b} — длины параллельных сторон, а \textbf{h} — расстояние между ними (высота).            \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%A7\%D0\%B5\%D1\%82\%D1\%8B\%D1\%80\%D1\%91\%D1\%85\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Четырёхугольник}	& $\frac{1}{2}$ * \textbf{m} * \textbf{n} * \textbf{sin} $\phi$ & \textbf{n} и \textbf{m} — длины диагоналей, и $\phi$  — угол между ними.             \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D0\%B0\%D0\%B2\%D0\%B8\%D0\%BB\%D1\%8C\%D0\%BD\%D1\%8B\%D0\%B9\_\%D1\%88\%D0\%B5\%D1\%81\%D1\%82\%D0\%B8\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Правильный шестиугольник} & $\frac{3\sqrt{3}}{2}$ * $\textbf{a}^2$         & \textbf{a} — длина стороны шестиугольника.            \\ \hline
+	Правильный \href{https://ru.wikipedia.org/wiki/\%D0\%92\%D0\%BE\%D1\%81\%D1\%8C\%D0\%BC\%D0\%B8\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{восьмиугольник}	& 2 * (1 + $\sqrt{2}$) * $\textbf{a}^2$ & \textbf{a} — длина стороны восьмиугольника.            \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D0\%B0\%D0\%B2\%D0\%B8\%D0\%BB\%D1\%8C\%D0\%BD\%D1\%8B\%D0\%B9\_\%D0\%BC\%D0\%BD\%D0\%BE\%D0\%B3\%D0\%BE\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Правильный многоугольник(1)}	& $\frac{\textbf{n} * a^2}{4 * tan (\pi/n)}$ & \textbf{a} — длина стороны многоугольника, а \textbf{n} — количество сторон многоугольника.           \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D0\%B0\%D0\%B2\%D0\%B8\%D0\%BB\%D1\%8C\%D0\%BD\%D1\%8B\%D0\%B9\_\%D0\%BC\%D0\%BD\%D0\%BE\%D0\%B3\%D0\%BE\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Правильный многоугольник(2)}	& $\frac{1}{2}$ * \textbf{a} * \textbf{p}       & \textbf{a} — \href{https://ru.wikipedia.org/wiki/\%D0\%90\%D0\%BF\%D0\%BE\%D1\%84\%D0\%B5\%D0\%BC\%D0\%B0}{апофема} (или радиус вписанной в многоугольник окружности), а \textbf{p} — периметр многоугольника.    \\ \hline
+	Произвольный \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D1\%80\%D0\%B0\%D0\%B2\%D0\%B8\%D0\%BB\%D1\%8C\%D0\%BD\%D1\%8B\%D0\%B9\_\%D0\%BC\%D0\%BD\%D0\%BE\%D0\%B3\%D0\%BE\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{многоугольник} 	& $\frac{1}{2}$ $\sum_{i=1}^{n-1}$ det |($^xi~~~^xi+1$ $y_i~~~y_i+1$)| & \href{https://ru.wikipedia.org/wiki/\%D0\%A4\%D0\%BE\%D1\%80\%D0\%BC\%D1\%83\%D0\%BB\%D0\%B0\_\%D0\%BF\%D0\%BB\%D0\%BE\%D1\%89\%D0\%B0\%D0\%B4\%D0\%B8\_\%D0\%93\%D0\%B0\%D1\%83\%D1\%81\%D1\%81\%D0\%B0}{Формула площади Гаусса}. ($x_i, y_i$) — координаты вершин n-угольника, ($x_n, y_n$)=($x_0,y_0$)           \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%9A\%D1\%80\%D1\%83\%D0\%B3}{Круг}	& $\pi$ * $r^2$ или $\frac{\pi * d^2}{4}$ & \textbf{r} — радиус окружности, а \textbf{d} — её диаметр.  \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%A1\%D0\%B5\%D0\%BA\%D1\%82\%D0\%BE\%D1\%80\_(\%D0\%B3\%D0\%B5\%D0\%BE\%D0\%BC\%D0\%B5\%D1\%82\%D1\%80\%D0\%B8\%D1\%8F)}{Сектор круга}	& $\frac{1}{2}$ * $r^2$ * $\theta$ & \textbf{r} и $\theta$  — соответственно радиус и угол сектора (в \href{https://ru.wikipedia.org/wiki/\%D0\%A0\%D0\%B0\%D0\%B4\%D0\%B8\%D0\%B0\%D0\%BD\%D1\%8B}{радианах}). \\ \hline
+	\href{https://ru.wikipedia.org/wiki/\%D0\%AD\%D0\%BB\%D0\%BB\%D0\%B8\%D0\%BF\%D1\%81}{Эллипс} & $\pi$ * a * b & \textbf{a} и \textbf{b} — большая и малая полуоси эллипса. \\ \hline
+	\end{tabular}
+\end{table}
+
+\section{См. также}
+
+%\begin{itemize}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%98\%D1\%81\%D1\%87\%D0\%B5\%D0\%B7\%D0\%BD\%D0\%BE\%D0\%B2\%D0\%B5\%D0\%BD\%D0\%B8\%D0\%B5\_\%D0\%BA\%D0\%BB\%D0\%B5\%D1\%82\%D0\%BA\%D0\%B8}{Исчезновение клетки}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%B5\%D1\%80\%D0\%B0\_\%D0\%91\%D0\%BE\%D1\%80\%D0\%B5\%D0\%BB\%D1\%8F}{Мера Бореля}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%B5\%D1\%80\%D0\%B0\_\%D0\%96\%D0\%BE\%D1\%80\%D0\%B4\%D0\%B0\%D0\%BD\%D0\%B0}{Мера Жордана}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9C\%D0\%B5\%D1\%80\%D0\%B0\_\%D0\%9B\%D0\%B5\%D0\%B1\%D0\%B5\%D0\%B3\%D0\%B0}{Мера Лебега}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9E\%D1\%80\%D0\%B8\%D0\%B5\%D0\%BD\%D1\%82\%D0\%B8\%D1\%80\%D0\%BE\%D0\%B2\%D0\%B0\%D0\%BD\%D0\%BD\%D0\%B0\%D1\%8F\_\%D0\%BF\%D0\%BB\%D0\%BE\%D1\%89\%D0\%B0\%D0\%B4\%D1\%8C}{Ориентированная площадь}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%BB\%D0\%BE\%D1\%89\%D0\%B0\%D0\%B4\%D1\%8C}{Площадь}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%9F\%D0\%BB\%D0\%BE\%D1\%89\%D0\%B0\%D0\%B4\%D1\%8C\_\%D0\%BF\%D0\%BE\%D0\%B2\%D0\%B5\%D1\%80\%D1\%85\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D0\%B8}{Площадь поверхности}
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D0\%B5\%D0\%BE\%D1\%80\%D0\%B5\%D0\%BC\%D0\%B0\_\%D0\%91\%D0\%BE\%D0\%B9\%D1\%8F\%D0\%B8\_\%E2\%80\%94\_\%D0\%93\%D0\%B5\%D1\%80\%D0\%B2\%D0\%B8\%D0\%BD\%D0\%B0}{Теорема Бойяи-Гервина} о равносоставленности равновеликих многоугольников.
+%\item \href{\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B5\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Треугольник} о площадях треугольников
+%\item \href{https://ru.wikipedia.org/wiki/\%D0\%A7\%D0\%B5\%D1\%82\%D1\%8B\%D1\%80\%D1\%91\%D1\%85\%D1\%83\%D0\%B3\%D0\%BE\%D0\%BB\%D1\%8C\%D0\%BD\%D0\%B8\%D0\%BA}{Четырёхугольник} - о площадях четырёхугольников
+%\end{itemize}
+
+\section{Ссылки}
+$\bullet$ В.Болтянский, \href{http://kvant.mccme.ru/1977/05/o_ponyatiyah_ploshchadi_i_obem.htm}{О понятиях площади и объёма.} \href{https://ru.wikipedia.org/wiki/\%D0\%9A\%D0\%B2\%D0\%B0\%D0\%BD\%D1\%82\_(\%D0\%B6\%D1\%83\%D1\%80\%D0\%BD\%D0\%B0\%D0\%BB)}{Квант}, № 5, 1977
+$\bullet$ Б. П. Гейдман, \href{http://www.mccme.ru/mmmf-lectures/books/books/book.9.pdf}{Площади многоугольников}, \href{http://www.mccme.ru/mmmf-lectures/books/books/books.php}{Библиотека «Математическое просвещение»}, выпуск 16, (2002).
+$\bullet$ \textit{Мерзон Г.А., Ященко И.В.} Длина, площадь, объем. — МЦНМО, 2011. — \href{https://ru.wikipedia.org/wiki/\%D0\%A1\%D0\%BB\%D1\%83\%D0\%B6\%D0\%B5\%D0\%B1\%D0\%BD\%D0\%B0\%D1\%8F:\%D0\%98\%D1\%81\%D1\%82\%D0\%BE\%D1\%87\%D0\%BD\%D0\%B8\%D0\%BA\%D0\%B8\_\%D0\%BA\%D0\%BD\%D0\%B8\%D0\%B3/9785940577409}{ISBN 9785940577409}.
+$\bullet$ В. А. Рохлин, \href{http://www.mccme.ru/free-books/djvu/encikl/enc-el-5.htm}{Площадь и объём}, Энциклопедия элементарной математики, Книга 5, Геометрия, под редакцией П. С. Александрова, А. И. Маркушевича и А. Я. Хинчина.
+\end{document}
